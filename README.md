@@ -1,1 +1,1 @@
-# workout-tracker
+A simple workout tracker app.
