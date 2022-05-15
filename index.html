@@ -11,7 +11,21 @@
       rel="stylesheet"
     />
 
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="style.css" />
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
 
     <link
       rel="stylesheet"
@@ -27,12 +41,40 @@
     ></script>
 
     <script defer src="script.js"></script>
-    <title>mapty // Map your workouts</title>
+    <title>Workout Tracker</title>
   </head>
   <body>
     <div class="sidebar">
-      <img src="images/logo.png" alt="Logo" class="logo" />
+      <div class="top__container">
+        <img src="images/logo.png" alt="Logo" class="logo" />
 
+        <div class="weather">
+          <div class="temperature">16<span>&#176;</span></div>
+          <div class="city">London</div>
+          <div class="status">9-Dec &nbsp; Cloudy</div>
+        </div>
+      </div>
+
+      <div class="command__bar">
+        <select class="sort hover__state" name="sorting__values">
+          <option selected="selected" hidden>Sort by</option>
+          <option value="distance">distance</option>
+          <option value="duration">duration</option>
+          <option value="pace">pace</option>
+          <option value="speed">speed</option>
+          <option value="cadence">cadence</option>
+          <option value="elevation">elevation</option>
+        </select>
+
+        <button class="global__scope hover__state">
+          <ion-icon name="globe-outline"></ion-icon>
+        </button>
+
+        <button class="clear__all hover__state">
+          <ion-icon class="clear__icon" name="trash-outline"></ion-icon
+          ><span>Clear</span>
+        </button>
+      </div>
       <ul class="workouts">
         <form class="form hidden">
           <div class="form__row">
@@ -71,7 +113,17 @@
         </form>
 
         <li class="workout workout--running" data-id="1234567890">
-          <h2 class="workout__title">Running on April 14</h2>
+          <div class="title__container">
+            <h2 class="workout__title">Running on April 14</h2>
+            <div class="icon__container">
+              <button class="button edit__btn hover__state">
+                <ion-icon class="icon edit__icon" name="create"></ion-icon>
+              </button>
+              <button class="button delete__btn hover__state">
+                <ion-icon class="icon" name="close"></ion-icon>
+              </button>
+            </div>
+          </div>
           <div class="workout__details">
             <span class="workout__icon">🏃‍♂️</span>
             <span class="workout__value">5.2</span>
@@ -95,7 +147,17 @@
         </li>
 
         <li class="workout workout--cycling" data-id="1234567891">
-          <h2 class="workout__title">Cycling on April 5</h2>
+          <div class="title__container">
+            <h2 class="workout__title">Cycling on April 5</h2>
+            <div class="icon__container">
+              <button class="button edit__btn">
+                <ion-icon class="icon edit__icon" name="create"></ion-icon>
+              </button>
+              <button class="button delete__btn">
+                <ion-icon class="icon" name="close"></ion-icon>
+              </button>
+            </div>
+          </div>
           <div class="workout__details">
             <span class="workout__icon">🚴‍♀️</span>
             <span class="workout__value">27</span>

@@ -12,6 +12,7 @@ const inputElevation = document.querySelector(".form__input--elevation");
 class Workout {
   date = new Date();
   id = (Date.now() + "").slice(-10);
+  clicks = 0;
 
   constructor(coords, distance, duration) {
     // this.date = ...
@@ -28,6 +29,10 @@ class Workout {
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
       months[this.date.getMonth()]
     } ${this.date.getDate()}`;
+  }
+
+  click() {
+    this.clicks++;
   }
 }
 
@@ -63,6 +68,10 @@ class Cycling extends Workout {
   }
 }
 
+// const run1 = new Running([39, -12], 5.2, 24, 178);
+// const cycle1 = new Cycling([39, -12], 27, 95, 523);
+// console.log(run1, cycle1);
+
 /////////////////////////////////////////////////////////
 // ARCHITECTURE
 class App {
@@ -82,11 +91,12 @@ class App {
     form.addEventListener("submit", this._newWorkout.bind(this));
     inputType.addEventListener("change", this._toggleElevationField);
     containerWorkouts.addEventListener("click", this._moveToPopup.bind(this));
-    sidebar.addEventListener("click", this._hideForm);
     document.addEventListener(
       "keydown",
       function (e) {
-        if (e.key === "Escape") this._hideForm();
+        if (e.key === "Escape") {
+          this._hideForm();
+        }
       }.bind(this)
     );
   }
@@ -228,7 +238,17 @@ class App {
   _renderWorkout(workout) {
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
-        <h2 class="workout__title">${workout.description}</h2>
+        <div class="title__container">
+            <h2 class="workout__title">${workout.description}</h2>
+            <div class="icon__container">
+              <button class="button edit__btn">
+                <ion-icon class="icon edit__icon" name="create"></ion-icon>
+              </button>
+              <button class="button delete__btn">
+                <ion-icon class="icon" name="close"></ion-icon>
+              </button>
+            </div>
+          </div>
         <div class="workout__details">
             <span class="workout__icon">${
               workout.type === "running" ? "🏃‍♂️" : "🚴🏻‍♀️"
@@ -293,6 +313,10 @@ class App {
         duration: 1,
       },
     });
+
+    // using the public interface
+    // for educational purpose only to show localstorage issue
+    // workout.click();
   }
 
   _setLocalStorage() {
