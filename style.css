@@ -191,6 +191,7 @@ a:visited {
 }
 
 .edit__btn {
+  display: none;
   background-color: #2980b9;
 }
 
@@ -199,6 +200,7 @@ a:visited {
 }
 
 .delete__btn {
+  display: none;
   background-color: #e74c3c;
 }
 
